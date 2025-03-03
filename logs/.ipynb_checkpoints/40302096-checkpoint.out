@@ -1,0 +1,76 @@
+=== Running on CPU only ===
+CPU cores allocated: 1
+Memory allocated: 80G
+==========================
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-16 14:01:20                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: Test3D
+Solver: bicgstab with none preconditioner
+Loading mesh files:
+  Points: data/mesh/richards/p_3D_68921.csv
+  Elements: data/mesh/richards/t_3D_68921.csv
+Loaded 3D mesh with 68921 points and 384000 tetrahedra
+
+Results saved successfully:
+  - Configuration: results3D/simulation_config.json
+  - Numerical results: results3D/numerical_results_Test3D_bicgstab_bicgstab_none_mesh25.npz
+  - Plots: results3D/final_state.png
+
+======================================================================
+        Richards Equation Solver - Simulation Summary        
+======================================================================
+
+⏱️  Timing Statistics:
+   • Total Simulation Time: 19158.38 seconds
+   • Physical Time Simulated: 9.72 time units
+   • Average Time per Step: 225.3928 seconds
+
+📊 Convergence Statistics:
+   • Total Iterations: 507
+   • Average Iterations per Step: 5.96
+   • Maximum Iterations: 7
+   • Final Error: 2.07e-05
+   • Average Error: 3.40e-05
+
+🔍 Mesh Statistics:
+   • Number of Nodes: 68921
+   • Number of Elements: 384000
+   • Domain Size: 15.24 × 15.24
+
+💻 System Resource Usage:
+   • CPU Usage: 87.3%
+   • Memory Usage: 8.6%
+   • Process Memory: 7.45 GB
+
+💡 Performance Insights:
+   • Memory per Node: 113.33 KB
+
+======================================================================

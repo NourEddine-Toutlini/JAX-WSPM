@@ -1,0 +1,5 @@
+test_case,mesh_size,solver,preconditioner,simulation_time,iterations,l2_pressure,linf_pressure,l2_saturation,linf_saturation,l2_relative_pressure,l2_relative_saturation,memory_usage
+Test1,50,bicgstab,none,96.4325,110,1.0042e-01,3.6111e-01,5.0861e-03,3.4410e-02,6.8314e-03,3.4649e-02,257.45
+Test1,50,gmres,none,105.1339,109,9.9921e-02,3.7844e-01,5.2034e-03,3.5373e-02,6.7890e-03,3.5772e-02,261.72
+Test1,50,direct,none,120.3015,109,9.9921e-02,3.7844e-01,5.2034e-03,3.5373e-02,6.7890e-03,3.5772e-02,259.87
+Test1,100,bicgstab,none,1468.4200,177,8.0524e-02,2.4000e-01,3.0254e-03,2.0064e-02,5.4640e-03,2.1613e-02,277.79

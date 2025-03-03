@@ -1,0 +1,264 @@
+Running: Test1 - mesh:50 - solver:bicgstab - precond:none
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-09 13:21:46                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: Test1
+Solver: bicgstab with none preconditioner
+Loading files: data/mesh/richards/p50.csv, data/mesh/richards/t50.csv with size: (2601,)
+
+Results saved successfully:
+  - Configuration: results/simulation_config.json
+  - Numerical results: results/numerical_results_Test1.npz
+  - Plots: results/final_state.png
+
+======================================================================
+        Richards Equation Solver - Simulation Summary        
+======================================================================
+
+⏱️  Timing Statistics:
+   • Total Simulation Time: 96.43 seconds
+   • Physical Time Simulated: 0.24 time units
+   • Average Time per Step: 5.0754 seconds
+
+📊 Convergence Statistics:
+   • Total Iterations: 110
+   • Average Iterations per Step: 5.79
+   • Maximum Iterations: 7
+   • Final Error: 4.07e-05
+   • Average Error: 3.09e-05
+
+🔍 Mesh Statistics:
+   • Number of Nodes: 2601
+   • Number of Elements: 5000
+   • Domain Size: 15.24 × 15.24
+
+📈 Error Metrics:
+   • L2 Error (Pressure): 1.00e-01
+   • L∞ Error (Pressure): 3.61e-01
+   • L2 Error (Saturation): 5.09e-03
+   • L∞ Error (Saturation): 3.44e-02
+   • Relative L2 Error (Pressure): 6.83e-03
+   • Relative L2 Error (Saturation): 3.46e-02
+
+💻 System Resource Usage:
+   • CPU Usage: 19.0%
+   • Memory Usage: 12.8%
+   • Process Memory: 320.49 MB
+
+💡 Performance Insights:
+   • Memory per Node: 126.18 KB
+
+======================================================================
+Running: Test1 - mesh:50 - solver:gmres - precond:none
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-09 13:23:29                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: Test1
+Solver: gmres with none preconditioner
+Loading files: data/mesh/richards/p50.csv, data/mesh/richards/t50.csv with size: (2601,)
+
+Results saved successfully:
+  - Configuration: results/simulation_config.json
+  - Numerical results: results/numerical_results_Test1.npz
+  - Plots: results/final_state.png
+
+======================================================================
+        Richards Equation Solver - Simulation Summary        
+======================================================================
+
+⏱️  Timing Statistics:
+   • Total Simulation Time: 105.13 seconds
+   • Physical Time Simulated: 0.23 time units
+   • Average Time per Step: 5.5334 seconds
+
+📊 Convergence Statistics:
+   • Total Iterations: 109
+   • Average Iterations per Step: 5.74
+   • Maximum Iterations: 6
+   • Final Error: 5.04e-05
+   • Average Error: 3.08e-05
+
+🔍 Mesh Statistics:
+   • Number of Nodes: 2601
+   • Number of Elements: 5000
+   • Domain Size: 15.24 × 15.24
+
+📈 Error Metrics:
+   • L2 Error (Pressure): 9.99e-02
+   • L∞ Error (Pressure): 3.78e-01
+   • L2 Error (Saturation): 5.20e-03
+   • L∞ Error (Saturation): 3.54e-02
+   • Relative L2 Error (Pressure): 6.79e-03
+   • Relative L2 Error (Saturation): 3.58e-02
+
+💻 System Resource Usage:
+   • CPU Usage: 20.5%
+   • Memory Usage: 15.4%
+   • Process Memory: 343.23 MB
+
+💡 Performance Insights:
+   • Memory per Node: 135.13 KB
+
+======================================================================
+Running: Test1 - mesh:50 - solver:direct - precond:none
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-09 13:25:20                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: Test1
+Solver: direct with none preconditioner
+Loading files: data/mesh/richards/p50.csv, data/mesh/richards/t50.csv with size: (2601,)
+
+Results saved successfully:
+  - Configuration: results/simulation_config.json
+  - Numerical results: results/numerical_results_Test1.npz
+  - Plots: results/final_state.png
+
+======================================================================
+        Richards Equation Solver - Simulation Summary        
+======================================================================
+
+⏱️  Timing Statistics:
+   • Total Simulation Time: 120.30 seconds
+   • Physical Time Simulated: 0.23 time units
+   • Average Time per Step: 6.3317 seconds
+
+📊 Convergence Statistics:
+   • Total Iterations: 109
+   • Average Iterations per Step: 5.74
+   • Maximum Iterations: 6
+   • Final Error: 5.04e-05
+   • Average Error: 3.08e-05
+
+🔍 Mesh Statistics:
+   • Number of Nodes: 2601
+   • Number of Elements: 5000
+   • Domain Size: 15.24 × 15.24
+
+📈 Error Metrics:
+   • L2 Error (Pressure): 9.99e-02
+   • L∞ Error (Pressure): 3.78e-01
+   • L2 Error (Saturation): 5.20e-03
+   • L∞ Error (Saturation): 3.54e-02
+   • Relative L2 Error (Pressure): 6.79e-03
+   • Relative L2 Error (Saturation): 3.58e-02
+
+💻 System Resource Usage:
+   • CPU Usage: 20.3%
+   • Memory Usage: 14.5%
+   • Process Memory: 318.64 MB
+
+💡 Performance Insights:
+   • Memory per Node: 125.45 KB
+
+======================================================================
+Running: Test1 - mesh:100 - solver:bicgstab - precond:none
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-09 13:27:26                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: Test1
+Solver: bicgstab with none preconditioner
+Loading files: data/mesh/richards/p100.csv, data/mesh/richards/t100.csv with size: (10201,)

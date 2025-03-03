@@ -1,0 +1,35 @@
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-06 12:34:48                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: SoluteTest
+Solver: bicgstab with none preconditioner
+Loading files: data/mesh/solute/p_Pinns_267039.csv, data/mesh/solute/t_Pinns_267039.csv with size: (267039,)
+Simulation time for the Richards solver: 27.276815 seconds
+Simulation time for the Richards solver: 26.628515 seconds
+Simulation time for the Richards solver: 38.876137 seconds

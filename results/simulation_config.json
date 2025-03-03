@@ -1,0 +1,53 @@
+{
+    "exponential": {
+        "Ks": 0.1,
+        "thetas": 0.45,
+        "thetar": 0.15,
+        "alpha0": 0.164
+    },
+    "van_genuchten": {
+        "Ks": 0.25,
+        "thetas": 0.43,
+        "thetar": 0.078,
+        "alpha": 3.6,
+        "n": 1.56,
+        "m": 0.35897435897435903
+    },
+    "solute": {
+        "DL": 0.5,
+        "DT": 0.1,
+        "Dm": 0.0,
+        "c_init": 0.1,
+        "c_inlet": 1.0
+    },
+    "time": {
+        "dt_init": 1e-06,
+        "Tmax": 1.0,
+        "m_it": 5,
+        "M_it": 7,
+        "W_it": 10,
+        "lambda_amp": 2.0,
+        "lambda_red": 0.5
+    },
+    "solver": {
+        "solver_type": "gmres",
+        "precond_type": "none",
+        "tol": 1e-10,
+        "maxiter": 100,
+        "restart": 30,
+        "precond_params": {
+            "alpha": 1.0,
+            "omega": 1.0,
+            "block_size": 2
+        }
+    },
+    "mesh": {
+        "mesh_size": "25",
+        "mesh_dir": "data/mesh",
+        "test_case": "Test1",
+        "points_file": "data/mesh/richards/p25.csv",
+        "triangles_file": "data/mesh/richards/t25.csv"
+    },
+    "test_case": "Test1",
+    "save_frequency": 5
+}

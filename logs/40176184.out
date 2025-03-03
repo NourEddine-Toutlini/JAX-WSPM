@@ -1,0 +1,68 @@
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║      _         __   __  __          _______ _____  __  __ 
+     | |  /\    \ \ / /  \ \        / / ____|  __ \|  \/  |
+     | | /  \    \ V /____\ \  /\  / / (___ | |__) | \  / |
+ _   | |/ /\ \    > <______\ \/  \/ / \___ \|  ___/| |\/| |
+| |__| / ____ \  / . \      \  /\  /  ____) | |    | |  | |
+ \____/_/    \_\/_/ \_\      \/  \/  |_____/|_|    |_|  |_|
+                                                           
+                                                           
+║
+║                                                                              ║
+║                     Water and Solute Transport Modeling                      ║
+║                                                                              ║
+║――――――――――――――――――――――――――――― System Information ―――――――――――――――――――――――――――――║
+║ • Time: 2025-02-12 13:31:51                    ║
+║ • Version: 1.0.0                                   ║
+║ • GPU: NVIDIA A100-SXM4-40GB                        ║
+║                                                                              ║
+║―――――――――――――――――――――――――――― Contact Information ―――――――――――――――――――――――――――――║
+║ • Nour-eddine Toutlini                                             ║
+║ • PhD student at UM6P (Maroc) / ÉTS (Montreal)                  ║
+║ • noureddine.toutlini@um6p.ma                              ║
+║ • nour-eddine.toutlini.1@ens.etsmtl.ca                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+Starting simulation with configuration:
+Test case: SoluteTest
+Solver: direct with none preconditioner
+Loading files: data/mesh/solute/p_Pinns_25.csv, data/mesh/solute/t_Pinns_25.csv with size: (3828,)
+
+Results saved successfully:
+  - Configuration: Soluteresults/simulation_config.json
+  - Numerical results: Soluteresults/numerical_results_cpu_SoluteTest_direct_ 1e-06.npz
+  - Plots: Soluteresults/final_state.png
+
+======================================================================
+        Richards Equation Solver - Simulation Summary        
+======================================================================
+
+⏱️  Timing Statistics:
+   • Total Simulation Time: 1636.02 seconds
+   • Physical Time Simulated: 0.99 time units
+   • Average Time per Step: 11.9417 seconds
+
+📊 Convergence Statistics:
+   • Total Iterations: 820
+   • Average Iterations per Step: 5.99
+   • Maximum Iterations: 7
+   • Final Error: 1.89e-05
+   • Average Error: 4.40e-05
+
+🔍 Mesh Statistics:
+   • Number of Nodes: 3828
+   • Number of Elements: 7426
+   • Domain Size: 2.00 × 2.00
+
+💻 System Resource Usage:
+   • CPU Usage: 86.3%
+   • Memory Usage: 15.0%
+   • Process Memory: 336.92 MB
+
+💡 Performance Insights:
+   • Memory per Node: 90.13 KB
+
+======================================================================

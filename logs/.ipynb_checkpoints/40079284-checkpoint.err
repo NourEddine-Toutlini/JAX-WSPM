@@ -1,0 +1,8 @@
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) nccl/2.18.3     2) ucc-cuda/1.2.0     3) ucx-cuda/1.14.1
+
+The following have been reloaded with a version change:
+  1) cuda/12.2 => cuda/12.6     2) cudacore/.12.2.2 => cudacore/.12.6.2
+
+Simulation Progress:   0%|          | 0/1.0 [00:00<?, ?time units/s]Simulation Progress:   0%|          | 2e-06/1.0 [00:27<3818:50:53, 13747880.58s/time units]Time: 0.00, Error: 1.48e-05, Iterations: 2, dt: 2.00e-06, :   0%|          | 2e-06/1.0 [00:27<3818:50:53, 13747880.58s/time units]Time: 0.00, Error: 1.48e-05, Iterations: 2, dt: 2.00e-06, :   0%|          | 6e-06/1.0 [00:54<2369:14:49, 8529340.41s/time units] Time: 0.00, Error: 5.95e-05, Iterations: 2, dt: 4.00e-06, :   0%|          | 6e-06/1.0 [00:54<2369:14:49, 8529340.41s/time units]Time: 0.00, Error: 5.95e-05, Iterations: 2, dt: 4.00e-06, :   0%|          | 1.4e-05/1.0 [01:33<1681:14:37, 6052561.81s/time units]Time: 0.00, Error: 0.00e+00, Iterations: 3, dt: 8.00e-06, :   0%|          | 1.4e-05/1.0 [01:33<1681:14:37, 6052561.81s/time units]
