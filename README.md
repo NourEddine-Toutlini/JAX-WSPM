@@ -42,8 +42,11 @@ Benchmark tests are conducted to examine the accuracy, efficiency, and scalabili
 This repository contains a comprehensive set of numerical tests that illustrate the accuracy, efficiency, and performance of the JAX-WSPM framework. In total, five test cases are provided:
 
 - **Example 1:** Comprises three test cases (Test 1, Test 2, and Test 3) with available analytical solutions of the Richards equation, allowing direct validation of the code.
-- **Example 2:** Presents a numerical test for the coupled flow–solute transport system, demonstrating the framework’s capability to handle multi-physics problems.
-- **Example 3:** Applies JAX-WSPM to three-dimensional Richards equation simulation.
+- **Example 2:** Applies JAX-WSPM to three-dimensional Richards equation simulation.
+- **Example 3:** Presents a numerical test for the coupled flow–solute transport system, demonstrating the framework’s capability to handle multi-physics problems.
+- **Example 4:** Demonstrates 2D reactive multi-species nitrogen transport with adsorption, showcasing the framework's capability to simulate complex biogeochemical 
+                 processes in unsaturated porous media.
+
 
 All simulations were conducted on Narval, a high-performance computing cluster provided by Compute Canada ([Narval Documentation](https://docs.alliancecan.ca/wiki/Narval)), using a single NVIDIA A100 GPU.
 
@@ -61,12 +64,15 @@ All the numerical tests presented in the paper can be executed using the streaml
   - For Test 1: `--test-case Test1`
   - For Test 2: `--test-case Test2`
   - For Test 3: `--test-case Test3`
-
+    
 - **Example 2:**
+  - Use: `--test-case Test3D`
+    
+- **Example 3:**
   - Use: `--test-case SoluteTest`
 
-- **Example 3:**
-  - Use: `--test-case Test3D`
+- **Example 4:**
+  - Use: `--test-case NitrogenTest`
 
 
 
@@ -150,12 +156,14 @@ On these clusters, the necessary CUDA and Python environments are typically pre-
 module load cuda/12.6
 module load python/3.12.4
 ```
-## Water Content and Solute concentration Distributions (Example 2)
 
-<img src="resultsSolute/final_state.png" alt="Library Logo" width="1000" />
-
-## Water Content Distribution Movie (Example 3)
+## Water Content Distribution Movie (Example 2)
 You can click here: [Watch the Water Content Distribution Movie](config/theta_movie.mp4)
 
 
 ![Water Content Distribution Movie](config/theta_movie.gif)
+
+
+## Water Content and Solute concentration Distributions (Example 3)
+
+<img src="resultsSolute/final_state.png" alt="Library Logo" width="1000" />
