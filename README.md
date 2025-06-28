@@ -148,7 +148,7 @@ python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt 
 ```
-### For Alliance Canada Clusters (e.g., Narval, Graham, etc)
+### For Narval Alliance Canada Cluster
 
 On these clusters, the necessary CUDA and Python environments are typically pre-configured. In that case, simply load the required modules:
 
