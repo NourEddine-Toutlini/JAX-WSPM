@@ -35,16 +35,21 @@ def load_and_validate_mesh(mesh_size: str,
         p_file = base_path / 'solute' / f'p_Pinns_{mesh_size}.csv'
         t_file = base_path / 'solute' / f't_Pinns_{mesh_size}.csv'
         is_3d = False
-        
+    elif test_case == 'NitrogenTest':  # ADD THIS NEW CASE
+        # Load nitrogen transport specific mesh (2D)
+        p_file = base_path / 'nitrogen' / f'p_{mesh_size}.csv'
+        t_file = base_path / 'nitrogen' / f't_{mesh_size}.csv'
+        is_3d = False
+    
     elif test_case == 'Test3D':
         # Load 3D mesh files
         if prefix:
             p_prefix, t_prefix = prefix
         else:
-            p_prefix, t_prefix = 'p_3D_132651', 't_3D_132651'
+            p_prefix, t_prefix = 'p_3D', 't_3D'
             
-        p_file = base_path / 'richards' / f'{p_prefix}.csv'
-        t_file = base_path / 'richards' / f'{t_prefix}.csv'
+        p_file = base_path / 'richards' / f'{p_prefix}.zip'
+        t_file = base_path / 'richards' / f'{t_prefix}.zip'
         is_3d = True
         
     else:

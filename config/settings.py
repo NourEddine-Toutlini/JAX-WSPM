@@ -9,7 +9,7 @@ from functools import partial
 @dataclass
 class VanGenuchtenParameters:
     """Van Genuchten soil hydraulic parameters."""
-    Ks: float = 0.25       # Saturated hydraulic conductivity
+    Ks: float = 0.2496       # Saturated hydraulic conductivity
     thetas: float = 0.43   # Saturated water content
     thetar: float = 0.078  # Residual water content
     alpha: float = 3.6     # Van Genuchten a parameter
@@ -49,7 +49,39 @@ class ExponentialParameters:
     
     def to_dict(self) -> Dict:
         return asdict(self)
+@dataclass
+class NitrogenParameters:
+    """Nitrogen transport parameters for multi-species reactive transport."""
+    
+    # Dispersion coefficients
+    DL: float = 0.04          # Longitudinal dispersivity (m)
+    DT: float = 0.0004        # Transverse dispersivity (m) 
+    Dm: float = 0.288e-4      # Molecular diffusion coefficient (m²/s)
+    
+    # Soil properties for sorption
+    rho: float = 1.6e-6       # Bulk density (kg/m³)
+    Kd: float = 0.34e-6       # Distribution coefficient for NH4+ (m³/kg)
+    
+    # Reaction rate constants (1/day)
+    mu1: float = 0.12         # NH4+ decay rate (nitrification rate)
+    mu2: float = 0.048        # NO2- decay rate 
+    mu3: float = 0.012        # NO3- decay rate (denitrification rate)
+    
+    # Initial concentrations (mg/L)
+    c_init_NH4: float = 0.0   # Initial NH4+ concentration
+    c_init_NO2: float = 0.0   # Initial NO2- concentration  
+    c_init_NO3: float = 0.0   # Initial NO3- concentration
+    
+    # Boundary concentrations (mg/L)
+    c_inlet_NH4: float = 50.0  # Inlet NH4+ concentration
+    c_inlet_NO2: float = 0.0   # Inlet NO2- concentration
+    c_inlet_NO3: float = 20.0  # Inlet NO3- concentration
 
+    def to_array(self) -> jnp.ndarray:
+        """Convert parameters to JAX array for efficient computation."""
+        return jnp.array([self.DL, self.DT, self.Dm, self.rho, self.Kd, 
+                         self.mu1, self.mu2, self.mu3])
+    
 @dataclass
 class TimeSteppingParameters:
     """Parameters for adaptive time-stepping."""
@@ -140,6 +172,7 @@ class SimulationConfig:
     exponential: ExponentialParameters = field(default_factory=ExponentialParameters)
     van_genuchten: VanGenuchtenParameters = field(default_factory=VanGenuchtenParameters)
     solute: SoluteParameters = field(default_factory=SoluteParameters)
+    nitrogen: NitrogenParameters = field(default_factory=NitrogenParameters)
     time: TimeSteppingParameters = field(default_factory=TimeSteppingParameters)
     solver: SolverParameters = field(default_factory=SolverParameters)
     test_case: str = 'Test1'  # Options: 'Test1', 'Test2', 'Test3', 'SoluteTest'

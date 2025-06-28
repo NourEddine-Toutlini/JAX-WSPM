@@ -23,6 +23,8 @@ from config.settings import (
 from src.solvers.richards_solver import RichardsSolver
 from src.solvers.coupled_solver_v2 import CoupledSolver
 from src.solvers.richards_solver_3D_v2 import RichardsSolver3D
+from src.solvers.nitrogen_solver import NitrogenSolver
+
 
 from src.utils.plotting import ResultsVisualizer 
 from src.utils.performance import print_simulation_summary
@@ -36,13 +38,15 @@ from config.welcome_banner import (
     print_fancy_banner
 )
 
+# At the top of your file, after imports
 
-jax.config.update('jax_enable_x64', False)
-# jax.config.update('jax_disable_jit', True) #To disable jit
+jax.config.update('jax_enable_x64', True)
+# jax.config.update('jax_disable_jit', True) # for disactivating jit
 
 
 
 
+# src/cli.py modifications
 
 def parse_args():
     """Parse command line arguments."""
@@ -52,15 +56,15 @@ def parse_args():
     )
     
     # Mesh options
-    parser.add_argument('--mesh-size', choices=['25', '50', '100', '200', '1024', '2048', '4096', 
+    parser.add_argument('--mesh-size', choices=['25', '50', '100', '200', '400', '1024', '2048', '4096', 
                                               '8192', '16384', '65536', '267039', '1014454'],
                        default='25', help='Mesh resolution')
     
     # Test case selection
     parser.add_argument('--test-case', 
-                       choices=['Test1', 'Test2', 'Test3', 'Test3D', 'SoluteTest'],  # Added Test3D
-                       default='Test1', 
-                       help='Test case to simulate')
+                   choices=['Test1', 'Test2', 'Test3', 'Test3D', 'SoluteTest', 'NitrogenTest'],
+                   default='Test1', 
+                   help='Test case to simulate')
     
     # Rest of the parser arguments remain the same...
     parser.add_argument('--solver', choices=['gmres', 'cg', 'bicgstab', 'direct'],
@@ -124,43 +128,62 @@ def main():
     print(f"Test case: {args.test_case}")
     print(f"Solver: {args.solver} with {args.preconditioner} preconditioner")
     
+    # In your main() function, update this part:
     try:
         # Choose appropriate solver based on test case
         if args.test_case == 'SoluteTest':
             solver = CoupledSolver(config)
         elif args.test_case == 'Test3D':
             solver = RichardsSolver3D(config)
+        elif args.test_case == 'NitrogenTest':
+            solver = NitrogenSolver(config)  # Make sure this exists
         else:
             solver = RichardsSolver(config)
-        
+
         # Run simulation
         results = solver.solve()
-        
-        # Calculate errors for Test1, Test2, Test3 (not for 3D)
-        if args.test_case not in ['SoluteTest', 'Test3D']:
+
+        # Calculate errors for Test1, Test2, Test3 (not for 3D or special tests)
+        if args.test_case not in ['SoluteTest', 'Test3D', 'NitrogenTest']:
             error_metrics = calculate_final_errors(results, config)
             results.update(error_metrics)
-        
+
         # Save numerical results
-        results_file = output_dir / f'numerical_results_{args.test_case}_{args.solver}_{args.solver}_{args.preconditioner}_mesh{args.mesh_size}.npz'
-        
-        # Save results with appropriate handling for 3D case
+        results_file = output_dir / f'numerical_results_{args.test_case}.npz'
+
+        # Base save dictionary - common to all test cases
         save_dict = {
             'pressure_head': results['pressure_head'],
             'theta': results.get('theta', None),
-            'solute': results.get('solute', None),
             'times': results['times'],
             'points': results['points'],
-            'elements': results['triangles'] if args.test_case != 'Test3D' else results['tetrahedra'],
             'iterations': results['iterations'],
             'errors': results['errors'],
             'dt_values': results['dt_values'],
             'simulation_time': results['simulation_time'],
             'memory_usage': float(psutil.Process().memory_info().rss / (1024 * 1024))
         }
-        
-        # Add error metrics if they exist
-        if args.test_case not in ['SoluteTest', 'Test3D']:
+
+        # Add test-case specific data
+        if args.test_case == 'SoluteTest':
+            save_dict['solute'] = results.get('solute', None)
+            save_dict['elements'] = results['triangles']
+        elif args.test_case == 'Test3D':
+            save_dict['elements'] = results['tetrahedra']
+        elif args.test_case == 'NitrogenTest':
+            # Add nitrogen-specific data
+            save_dict['NH4_concentration'] = results['NH4_concentration']
+            save_dict['NO2_concentration'] = results['NO2_concentration'] 
+            save_dict['NO3_concentration'] = results['NO3_concentration']
+            save_dict['elements'] = results['triangles']
+            save_dict['solute'] = None  # Set to None since we're not using the old solute field
+        else:
+            # Regular Richards tests
+            save_dict['solute'] = None
+            save_dict['elements'] = results['triangles']
+
+        # Add error metrics if they exist (only for basic Richards tests)
+        if args.test_case not in ['SoluteTest', 'Test3D', 'NitrogenTest']:
             save_dict.update({
                 'l2_pressure': float(results.get('l2_pressure', 0)),
                 'linf_pressure': float(results.get('linf_pressure', 0)),
@@ -169,7 +192,7 @@ def main():
                 'l2_relative_pressure': float(results.get('l2_relative_pressure', 0)),
                 'l2_relative_saturation': float(results.get('l2_relative_saturation', 0))
             })
-        
+
         jnp.savez(results_file, **save_dict)
 
         # Create and save visualizations
@@ -182,11 +205,22 @@ def main():
                 results['final_solute'],
                 output_dir / 'final_state.png'
             )
+        elif args.test_case == 'NitrogenTest':
+            visualizer.plot_nitrogen_species_final(
+                results['points'],                     # mesh nodes
+                results['triangles'],                   # mesh connectivity (triangles)
+                results['NH4_concentration'][-1],      # final NH4
+                results['NO2_concentration'][-1],      # final NO2
+                results['NO3_concentration'][-1],      # final NO3
+                time_step='Final',
+                filename='final_nitrogen_species.png'
+            )   
+            
         # elif args.test_case == 'Test3D':
         #     # Use 3D visualization if implemented
         #     visualizer.plot_3d_results(results)  
-        else:
-            visualizer.plot_all_results(results)
+        # else:
+        #     visualizer.plot_all_results(results)
         
         print(f"\n{Fore.GREEN}Results saved successfully:{Style.RESET_ALL}")
         print(f"  - Configuration: {config_file}")
