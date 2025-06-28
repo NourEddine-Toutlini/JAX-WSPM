@@ -20,7 +20,7 @@ from config.settings import (
     VanGenuchtenParameters,
     SoluteParameters
 )
-from src.solvers.richards_solver import RichardsSolver
+from src.solvers.richards_solver_v2 import RichardsSolver
 from src.solvers.coupled_solver_v2 import CoupledSolver
 from src.solvers.richards_solver_3D_v2 import RichardsSolver3D
 from src.solvers.nitrogen_solver import NitrogenSolver
