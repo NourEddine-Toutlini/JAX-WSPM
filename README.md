@@ -167,3 +167,7 @@ You can click here: [Watch the Water Content Distribution Movie](config/theta_mo
 ## Water Content and Solute concentration Distributions (Example 3)
 
 <img src="resultsSolute/final_state.png" alt="Library Logo" width="1000" />
+
+
+## Nitrogen Species Distribution Animation (Example 4)
+<img src="config/nitrogen-anim.gif" alt="Nitrogen Species Animation" width="1000" />
