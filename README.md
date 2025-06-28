@@ -10,13 +10,14 @@
 JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modeling water flow and solute transport in unsaturated porous media using an implicit finite element method
 
 ### Abstract
-> Accurate simulation of water flow and solute transport in unsaturated porous media demands solving complex, highly nonlinear partial differential equations. Traditional implicit finite element methods are robust but can be computationally expensive when addressing the coupled dynamics of water fluxes and solute migration. In this work, we introduce JAX-WSPM, an open-source framework that leverages GPU acceleration, just-in-time (JIT) compilation, and automatic differentiation (AD) via the JAX library to efficiently solve the Richards equation and its associated transport equations. JAX-WSPM implements two complementary strategies for computing water fluxes—one using conventional finite element formulations and another that supports automatic differentiation—and it incorporates an adaptive time-stepping scheme to dynamically optimize simulation performance. Benchmark results show that our GPU-based implementation dramatically reduces total simulation times, achieving speedups of approximately 25× relative to adaptive serial runs and up to 49× relative to non-adaptive serial implementations. JAX-WSPM is available at [https://github.com/nout0ut/JAX-WSPM](https://github.com/nout0ut/JAX-WSPM), and we believe that a Python package such as JAX-WSPM is crucial to facilitating cutting-edge research in hydrodynamics by enabling rapid prototyping and scalable, high-fidelity simulations.
+> Accurate simulation of water flow and solute transport in unsaturated porous media requires solving complex, nonlinear partial differential equations. Traditionally, implicit finite element methods have been used due to their robustness and stability. However, they are well known for their computational expense when addressing coupled dynamics. In this study, we present JAX-WSPM, a GPU-accelerated framework built with the JAX library that leverages just-in-time (JIT) compilation and automatic differentiation (AD) to reduce computational cost and improve scalability for coupled water flow and solute transport systems in porous media. We use an implicit finite element method to solve the Richards equation, which models water flow in unsaturated media, and its associated transport equation. JAX-WSPM implements two complementary strategies for computing water fluxes that are critical for the solute transport equation: one based on conventional finite element formulations and another that supports automatic differentiation. In addition, an adaptive time-stepping strategy is employed to optimize performance.
+Benchmark tests are conducted to examine the accuracy, efficiency, and scalability of JAX-WSPM in simulating both the Richards equation and the coupled flow-solute transport system. The results confirm the accuracy and efficiency of the framework and demonstrate significant speedups when comparing the GPU-accelerated JAX-WSPM implementation to both the CPU-based JAX-WSPM and serial Python implementations. For example, when performing simulations on a mesh with 1.03 million degrees of freedom, the GPU-accelerated solver achieved a speedup of approximately 107$\times$ relative to the serial Python implementation running on a single CPU. JAX-WSPM is available at https://github.com/nout0ut/JAX-WSPM, offering a flexible, user-friendly, and high-performance tool for simulations in porous media.
 
 ## Authors and Contact
 
 **Authors:**
 
-- Nour-eddine Toutlini  
+- Nour-Eddine Toutlini  
 - Azzeddine Soulaïmani  
 - Abdelaziz Beljadid  
 
@@ -30,10 +31,10 @@ JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modelin
 ```bibtex
 @article{toutlini2025JAX_WSPM,
   title={JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modeling water flow and solute transport in unsaturated porous media using an implicit finite element method},
-  author={Toutlini, N. and Soulaïmani, A. and Beljadid, A.},
+  author={Toutlini, N-E. and Soulaïmani, A. and Beljadid, A.},
   journal={Computer Physics Communications},
-  note = {Under review},
-  year={2025}
+  year={2025},
+  note={Under review}
 }
 ```
 ## Numerical Tests
@@ -41,8 +42,11 @@ JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modelin
 This repository contains a comprehensive set of numerical tests that illustrate the accuracy, efficiency, and performance of the JAX-WSPM framework. In total, five test cases are provided:
 
 - **Example 1:** Comprises three test cases (Test 1, Test 2, and Test 3) with available analytical solutions of the Richards equation, allowing direct validation of the code.
-- **Example 2:** Presents a numerical test for the coupled flow–solute transport system, demonstrating the framework’s capability to handle multi-physics problems.
-- **Example 3:** Applies JAX-WSPM to three-dimensional Richards equation simulation.
+- **Example 2:** Applies JAX-WSPM to three-dimensional Richards equation simulation.
+- **Example 3:** Presents a numerical test for the coupled flow–solute transport system, demonstrating the framework’s capability to handle multi-physics problems.
+- **Example 4:** Demonstrates 2D reactive multi-species nitrogen transport with adsorption, showcasing the framework's capability to simulate complex biogeochemical 
+                 processes in unsaturated porous media.
+
 
 All simulations were conducted on Narval, a high-performance computing cluster provided by Compute Canada ([Narval Documentation](https://docs.alliancecan.ca/wiki/Narval)), using a single NVIDIA A100 GPU.
 
@@ -53,11 +57,28 @@ JAX-WSPM offers a streamlined command-line interface implemented in `src/cli.py`
 ```bash
 python -m src.cli --test-case SoluteTest --solver gmres --preconditioner none --output-dir Soluteresults --mesh-size 1024 --dt 1e-4 --tmax 1
 ```
+**Note:**  
+All the numerical tests presented in the paper can be executed using the streamlined command-line interface by specifying the appropriate test case with the `--test-case` parameter. Use the following test cases for the respective examples:
+
+- **Example 1:**
+  - For Test 1: `--test-case Test1`
+  - For Test 2: `--test-case Test2`
+  - For Test 3: `--test-case Test3`
+    
+- **Example 2:**
+  - Use: `--test-case Test3D`
+    
+- **Example 3:**
+  - Use: `--test-case SoluteTest`
+
+- **Example 4:**
+  - Use: `--test-case NitrogenTest`
+
+
 
 ## Running Jobs with SLURM
 
-For batch processing on high-performance computing clusters, you can use the provided SLURM job script (`job.sh`). Below is an example script for running Test 1, Test 2, and Test 3:
-
+For batch processing on high-performance computing clusters, you can use the provided SLURM job script (`job.sh`). Below is an example script for running Test 1, Test 2, and Test 3 from the paper using different meshes, solvers, and preconditioners. The results will be saved in `.npz` files, and performance metrics such as L2 error, wall time, and others will be recorded in `.csv` files:
 ```bash
 #!/bin/bash
 #SBATCH --job-name=richards_benchmark
@@ -103,7 +124,7 @@ print(f"{os.environ[\"TEST_CASE\"]},{os.environ[\"MESH\"]},{os.environ[\"SOLVER\
      f"{float(data[\"linf_saturation\"]):.4e},"
      f"{float(data[\"l2_relative_pressure\"]):.4e},"
      f"{float(data[\"l2_relative_saturation\"]):.4e},"
-     f"{float(data[\"memory_usage\"]):.2f}")' >> results/benchmark_results_cpu_200.csv
+     f"{float(data[\"memory_usage\"]):.2f}")' >> results/benchmark_results.csv
            done
        done
    done
@@ -135,7 +156,14 @@ On these clusters, the necessary CUDA and Python environments are typically pre-
 module load cuda/12.6
 module load python/3.12.4
 ```
-## Water Content Distribution Movie
 
-[Watch the Water Content Distribution Movie](config/theta_movie.mp4)
+## Water Content Distribution Movie (Example 2)
+You can click here: [Watch the Water Content Distribution Movie](config/theta_movie.mp4)
+
+
 ![Water Content Distribution Movie](config/theta_movie.gif)
+
+
+## Water Content and Solute concentration Distributions (Example 3)
+
+<img src="resultsSolute/final_state.png" alt="Library Logo" width="1000" />
