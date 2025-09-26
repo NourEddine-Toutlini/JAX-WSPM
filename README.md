@@ -27,10 +27,10 @@ JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modelin
 ```bibtex
 @article{toutlini2025JAX_WSPM,
   title={JAX-WSPM: A GPU-accelerated parallel framework using the JAX library for modeling water flow and solute transport in unsaturated porous media using an implicit finite element method},
-  author={Toutlini, N-E. and Soulaïmani, A. and Beljadid, A.},
+  author={Toutlini, N.-E. and Soulaïmani, A. and Beljadid, A.},
   journal={Computer Physics Communications},
   year={2025},
-  note={Under review}
+  doi={10.1016/j.cpc.2025.109866}
 }
 ```
 ## Numerical Tests
